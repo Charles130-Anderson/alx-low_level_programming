@@ -1,0 +1,1 @@
+This repository contains examples and explanations of fundamental programming concepts: variables, if-else statements, and while loops. These concepts are essential building blocks in various programming languages and are crucial for developing logic and control flow in your programs.
