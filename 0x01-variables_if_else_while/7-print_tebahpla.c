@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 /**
- * main - prints the lowercase alphabetical letter in reverse,
- * then a new line
- * Returns 0 (Success)
+ * main - prints the lowercase alphabetical in reverse,
+ * followed by a new line
+ * Return: Always returns 0 (Success)
  */
 int main(void)
 {
