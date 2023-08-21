@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 int _putchar(char c);
-void _strlen(char *s);
+int _strlen(char *s);
 void reset_to_98(int *n);
 void _puts(char *str);
 void swap_int(int *a, int *b);
@@ -13,8 +13,9 @@ void print_rev(char *s);
 void rev_string(char *s);
 void puts2(char *str);
 void print_array(int *a, int n);
-void _strcpy(char *dest, char *src);
+char*_strcpy(char *dest, char *src);
 void puts_half(char *str);
+int _atoi(char *s);
 
 #endif
 
