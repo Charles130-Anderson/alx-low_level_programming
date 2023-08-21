@@ -1,33 +1,40 @@
-/**
- * _atoi - converts a string to an integer
- * @s: pointer to the string to be converted
- *
- * Return: the integer converted from the string
- */
-int _atoi(char *s)
+#include "main.h"
+
+int convertStringToInt(char *str)
 {
-    int i = 0;
-    int sign = 1;
-    int result = 0;
+int index, negativeFlag, numDigits, result, factor, currentDigit;
 
-    if (s[0] == '-')
-    {
-        sign = -1;
-        i++;
-    }
+index = 0;
+negativeFlag = 0;
+numDigits = 0;
+result = 0;
+factor = 0;
+currentDigit = 0;
 
-    while (s[i] != '\0')
-    {
-        if (s[i] >= '0' && s[i] <= '9')
-        {
-            result = result * 10 + (s[i] - '0');
-        }
-        else
-        {
-            break;
-        }
-        i++;
-    }
+while (str[numDigits] != '\0')
+numDigits++;
 
-    return sign * result;
+while (index < numDigits && factor == 0)
+{
+if (str[index] == '-')
+++negativeFlag;
+
+if (str[index] >= '0' && str[index] <= '9')
+{
+currentDigit = str[index] - '0';
+if (negativeFlag % 2)
+currentDigit = -currentDigit;
+result = result * 10 + currentDigit;
+factor = 1;
+if (str[index + 1] < '0' || str[index + 1] > '9')
+break;
+factor = 0;
+}
+index++;
+}
+
+if (factor == 0)
+return 0;
+
+return result;
 }
