@@ -1,40 +1,46 @@
 #include "main.h"
 
-int convertStringToInt(char *str)
+/**
+* Convert string to an integer.
+* @s: Input string to be converted.
+*
+* Returns the integer representation of the string.
+*/
+int _atoi(char *s)
 {
-int index, negativeFlag, numDigits, result, factor, currentDigit;
+int i, d, n, len, f, digit;
 
-index = 0;
-negativeFlag = 0;
-numDigits = 0;
-result = 0;
-factor = 0;
-currentDigit = 0;
+i = 0;
+d = 0;
+n = 0;
+len = 0;
+f = 0;
+digit = 0;
 
-while (str[numDigits] != '\0')
-numDigits++;
+while (s[len] != '\0')
+len++;
 
-while (index < numDigits && factor == 0)
+while (i < len && f == 0)
 {
-if (str[index] == '-')
-++negativeFlag;
+if (s[i] == '-')
+++d;
 
-if (str[index] >= '0' && str[index] <= '9')
+if (s[i] >= '0' && s[i] <= '9')
 {
-currentDigit = str[index] - '0';
-if (negativeFlag % 2)
-currentDigit = -currentDigit;
-result = result * 10 + currentDigit;
-factor = 1;
-if (str[index + 1] < '0' || str[index + 1] > '9')
+digit = s[i] - '0';
+if (d % 2)
+digit = -digit;
+n = n * 10 + digit;
+f = 1;
+if (s[i + 1] < '0' || s[i + 1] > '9')
 break;
-factor = 0;
+f = 0;
 }
-index++;
+i++;
 }
 
-if (factor == 0)
-return 0;
+if (f == 0)
+return (0);
 
-return result;
+return (n);
 }
