@@ -11,7 +11,7 @@ int length = 0;
 int i;
 
 while (src[length] != '\0')
-        length++;
+length++;
 
 for (i = 0; i <= length; i++)
 dest[i] = src[i];
