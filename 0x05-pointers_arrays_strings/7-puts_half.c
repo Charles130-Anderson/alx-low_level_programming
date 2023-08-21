@@ -1,37 +1,28 @@
 #include "main.h"
-#include <stdio.h>
 
-int _strlen(char *str)
-{
-int len = 0;
-
-while (*str != '\0')
-{
-len++;
-str++;
-}
-
-return len;
-}
-
+/**
+* puts_half - Prints the second half of a string
+* @str: Input string
+* Return: No return value
+*/
 void puts_half(char *str)
 {
-int len = _strlen(str);
-int start_index;
+int count = 0, i;
 
-if (len % 2 == 0)
+while (count >= 0)
 {
-start_index = len / 2;
+if (str[count] == '\0')
+break;
+count++;
 }
+
+if (count % 2 == 1)
+i = count / 2;
 else
-{
-start_index = (len - 1) / 2;
-}
+i = (count - 1) / 2;
 
-for (int i = start_index; i < len; i++)
-{
+for (i++; i < count; i++)
 _putchar(str[i]);
-}
 
 _putchar('\n');
 }
