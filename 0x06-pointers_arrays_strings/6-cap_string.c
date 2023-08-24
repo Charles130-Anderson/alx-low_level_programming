@@ -1,4 +1,12 @@
 #include "main.h"
+#include "main.h"
+
+/**
+ * cap_string - capitalizes the first letter of each word in a string
+ * @str: input string
+ *
+ * Return: pointer to modified string
+ */
 
 char *cap_string(char *str)
 {
@@ -26,4 +34,3 @@ str[i] = str[i] - ('a' - 'A');
 
 return (str);
 }
-
