@@ -1,59 +1,76 @@
-#include <stdio.h>
-#include <stdio.h>
+#include "main.h"
 
 /**
- * Prints the content of a buffer in a formatted manner.
- *
- * @param b The buffer to print.
- * @param size The size of the buffer.
+ * Reverse a string in place.
+ * @param str The string to reverse.
  */
-
-void print_buffer(char *b, int size)
+void reverseString(char *str)
 {
-int i, j;
+    int i = 0;
+    int j = 0;
+    char temp;
 
-if (size <= 0)
-{
-printf("\n");
-return;
+    while (*(str + i) != '\0')
+    {
+        i++;
+    }
+    i--;
+
+    for (j = 0; j < i; j++, i--)
+    {
+        temp = *(str + j);
+        *(str + j) = *(str + i);
+        *(str + i) = temp;
+    }
 }
 
-for (i = 0; i < size; i += 10)
+/**
+ * Add two numbers together.
+ * @param num1 The first number to add.
+ * @param num2 The second number to add.
+ * @param result Pointer to the buffer to store the result.
+ * @param size Size of the buffer.
+ * @return Pointer to the result, or NULL if the result cannot be stored in the buffer.
+ */
+char *addNumbers(char *num1, char *num2, char *result, int size)
 {
-printf("%08x ", i);
+    int overflow = 0, i = 0, j = 0, digits = 0;
+    int val1 = 0, val2 = 0, temp_sum = 0;
 
-for (j = i; j < i + 10; j += 2)
-{
-if (j < size)
-printf("%02x", b[j] & 0xff);
-else
-printf("  ");
-
-if (j + 1 < size)
-printf("%02x", b[j + 1] & 0xff);
-else
-printf("  ");
-
-printf(" ");
+    while (*(num1 + i) != '\0')
+        i++;
+    while (*(num2 + j) != '\0')
+        j++;
+    i--;
+    j--;
+    if (j >= size || i >= size)
+        return NULL;
+    while (j >= 0 || i >= 0 || overflow == 1)
+    {
+        if (i < 0)
+            val1 = 0;
+        else
+            val1 = *(num1 + i) - '0';
+        if (j < 0)
+            val2 = 0;
+        else
+            val2 = *(num2 + j) - '0';
+        temp_sum = val1 + val2 + overflow;
+        if (temp_sum >= 10)
+            overflow = 1;
+        else
+            overflow = 0;
+        if (digits >= (size - 1))
+            return NULL;
+        *(result + digits) = (temp_sum % 10) + '0';
+        digits++;
+        j--;
+        i--;
+    }
+    if (digits == size)
+        return NULL;
+    *(result + digits) = '\0';
+    reverseString(result);
+    return result;
 }
 
-printf(" ");
-
-for (j = i; j < i + 10; j++)
-{
-if (j < size)
-{
-if (b[j] >= 32 && b[j] <= 126)
-printf("%c", b[j]);
-else
-printf(".");
-}
-else
-{
-printf(" ");
-}
-}
-
-printf("\n");
-}
-}
