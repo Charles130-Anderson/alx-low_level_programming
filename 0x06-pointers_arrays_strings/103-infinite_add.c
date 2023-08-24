@@ -1,84 +1,76 @@
 #include "main.h"
 
 /**
- * reverse_string - Reverses a string in place.
- * @str: The string to be reversed.
+ * rev_string - reverse array
+ * @n: integer params
+ * Return: 0
  */
-void reverse_string(char *str)
+void rev_string(char *n)
 {
-int start = 0;
-int end = 0;
+int i = 0;
+int j = 0;
 char temp;
 
-Find the end of the string
-while (*(str + end) != '\0')
+while (*(n + i) != '\0')
 {
-end++;
+i++;
 }
-end--;
+i--;
 
-Swap characters to reverse the string
-for (start = 0; start < end; start++, end--)
+for (j = 0; j < i; j++, i--)
 {
-temp = *(str + start);
-*(str + start) = *(str + end);
-*(str + end) = temp;
+temp = *(n + j);
+*(n + j) = *(n + i);
+*(n + i) = temp;
 }
 }
 
 /**
- * infinite_addition - Adds two numbers represented as strings.
- * @a: The first number to add.
- * @b: The second number to add.
- * @result: Pointer to the buffer to store the result.
- * @result_size: Size of the result buffer.
- * Return: Pointer to the result buffer, or NULL on failure.
+ * infinite_add - add 2 numbers together
+ * @n1: text representation of 1st number to add
+ * @n2: text representation of 2nd number to add
+ * @r: pointer to buffer
+ * @size_r: buffer size
+ * Return: pointer to calling function
  */
-char *infinite_addition(char *a, char *b, char *result, int result_size)
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-int carry = 0, i = 0, j = 0, digits = 0;
-int digit1 = 0, digit2 = 0, temp_sum = 0;
+int overflow = 0, i = 0, j = 0, digits = 0;
+int val1 = 0, val2 = 0, temp_tot = 0;
 
-Find the length of a and b
-while (*(a + i) != '\0')
+while (*(n1 + i) != '\0')
 i++;
-while (*(b + j) != '\0')
+while (*(n2 + j) != '\0')
 j++;
 i--;
 j--;
-
-Check if result buffer is large enough
-if (j >= result_size || i >= result_size)
-return (NULL);
-
-Perform addition with carry
-while (j >= 0 || i >= 0 || carry == 1)
+if (j >= size_r || i >= size_r)
+return (0);
+while (j >= 0 || i >= 0 || overflow == 1)
 {
 if (i < 0)
-digit1 = 0;
+val1 = 0;
 else
-digit1 = *(a + i) - '0';
+val1 = *(n1 + i) - '0';
 if (j < 0)
-digit2 = 0;
+val2 = 0;
 else
-digit2 = *(b + j) - '0';
-temp_sum = digit1 + digit2 + carry;
-if (temp_sum >= 10)
-carry = 1;
+val2 = *(n2 + j) - '0';
+temp_tot = val1 + val2 + overflow;
+if (temp_tot >= 10)
+overflow = 1;
 else
-carry = 0;
-if (digits >= (result_size - 1))
-return (NULL);
-*(result + digits) = (temp_sum % 10) + '0';
+overflow = 0;
+if (digits >= (size_r - 1))
+return (0);
+*(r + digits) = (temp_tot % 10) + '0';
 digits++;
 j--;
 i--;
 }
-
-if (digits == result_size)
-return (NULL);
-
-*(result + digits) = '\0';
-reverse_string(result);
-return (result);
+if (digits == size_r)
+return (0);
+*(r + digits) = '\0';
+rev_string(r);
+return (r);
 }
