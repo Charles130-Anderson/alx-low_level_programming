@@ -1,76 +1,76 @@
 #include "main.h"
 
 /**
- * reverse_string - reverse array of characters
- * @str: pointer to the string to reverse
- * Return: void
+ * rev_string - reverse array
+ * @n: integer params
+ * Return: 0
  */
-void reverse_string(char *str)
+void rev_string(char *n)
 {
-    int i = 0;
-    int j = 0;
-    char temp;
+int i = 0;
+int j = 0;
+char temp;
 
-    while (*(str + i) != '\0')  // Find the end of the string
-    {
-        i++;
-    }
-    i--;
+while (*(n + i) != '\0')
+{
+i++;
+}
+i--;
 
-    for (j = 0; j < i; j++, i--)  // Swap characters from both ends
-    {
-        temp = *(str + j);
-        *(str + j) = *(str + i);
-        *(str + i) = temp;
-    }
+for (j = 0; j < i; j++, i--)
+{
+temp = *(n + j);
+*(n + j) = *(n + i);
+*(n + i) = temp;
+}
 }
 
 /**
- * add_numbers - add two numbers together
- * @num1: text representation of first number to add
- * @num2: text representation of second number to add
- * @result: pointer to buffer to store the result
- * @result_size: size of the buffer
- * Return: pointer to the result, or NULL if the result cannot be stored
+ * infinite_add - add 2 numbers together
+ * @n1: text representation of 1st number to add
+ * @n2: text representation of 2nd number to add
+ * @r: pointer to buffer
+ * @size_r: buffer size
+ * Return: pointer to calling function
  */
-char *add_numbers(char *num1, char *num2, char *result, int result_size)
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-    int carry = 0, i = 0, j = 0, digits = 0;
-    int val1 = 0, val2 = 0, temp_sum = 0;
+int overflow = 0, i = 0, j = 0, digits = 0;
+int val1 = 0, val2 = 0, temp_tot = 0;
 
-    while (*(num1 + i) != '\0')  // Find the length of num1
-        i++;
-    while (*(num2 + j) != '\0')  // Find the length of num2
-        j++;
-    i--;
-    j--;
-    if (j >= result_size || i >= result_size)  // Check if result buffer is large enough
-        return NULL;
-    while (j >= 0 || i >= 0 || carry == 1)  // Perform addition digit by digit
-    {
-        if (i < 0)
-            val1 = 0;
-        else
-            val1 = *(num1 + i) - '0';
-        if (j < 0)
-            val2 = 0;
-        else
-            val2 = *(num2 + j) - '0';
-        temp_sum = val1 + val2 + carry;
-        if (temp_sum >= 10)
-            carry = 1;
-        else
-            carry = 0;
-        if (digits >= (result_size - 1))  // Check if result buffer is full
-            return NULL;
-        *(result + digits) = (temp_sum % 10) + '0';
-        digits++;
-        j--;
-        i--;
-    }
-    if (digits == result_size)
-        return NULL;
-    *(result + digits) = '\0';
-    reverse_string(result);  // Reverse the result
-    return result;
+while (*(n1 + i) != '\0')
+i++;
+while (*(n2 + j) != '\0')
+j++;
+i--;
+j--;
+if (j >= size_r || i >= size_r)
+return (0);
+while (j >= 0 || i >= 0 || overflow == 1)
+{
+if (i < 0)
+val1 = 0;
+else
+val1 = *(n1 + i) - '0';
+if (j < 0)
+val2 = 0;
+else
+val2 = *(n2 + j) - '0';
+temp_tot = val1 + val2 + overflow;
+if (temp_tot >= 10)
+overflow = 1;
+else
+overflow = 0;
+if (digits >= (size_r - 1))
+return (0);
+*(r + digits) = (temp_tot % 10) + '0';
+digits++;
+j--;
+i--;
+}
+if (digits == size_r)
+return (0);
+*(r + digits) = '\0';
+rev_string(r);
+return (r);
 }
