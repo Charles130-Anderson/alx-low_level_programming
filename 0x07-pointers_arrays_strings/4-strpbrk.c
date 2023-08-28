@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * _strpbrk - Find the first occurrence of any character from a set in a string.
+ * _strpbrk - Find first occurrence of any character from a set in a string.
  * @s: The input string to search.
  * @accept: The set of characters to search for.
  *
- * Return: A pointer to the first occurrence of a character from the set in the string.
- *         If no matching character is found, return NULL.
+ * Return: A pointer to the first occurrence of a character .
+ * If no matching character is found, return NULL.
  */
 
 char *_strpbrk(char *s, char *accept)
