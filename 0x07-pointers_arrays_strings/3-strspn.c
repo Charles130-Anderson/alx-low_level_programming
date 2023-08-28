@@ -1,13 +1,12 @@
 #include "main.h"
 
 /**
- * _strspn - Get the length of the initial segment of a string that consists of only characters from another string.
+ * _strspn -length of initial segment with only matching characters.
  * @s: The input string.
- * @accept: The string containing the characters to be matched.
+ * @accept: The string with characters to match.
  *
- * Return: The length of the initial segment of the string that matches the characters in the accept string.
+ * Return: Length of the matching segment of the string.
  */
-
 
 unsigned int _strspn(char *s, char *accept)
 {
