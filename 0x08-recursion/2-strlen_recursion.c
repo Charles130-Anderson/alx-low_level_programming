@@ -5,7 +5,7 @@
  * @s: The string to be measured.i
  * Returns the length of a string using recursion
  * @param s - the string to calculate the length of
- * @return the length of the string
+ * Return: The length of the string.
  */
 #include <stdio.h>
 
