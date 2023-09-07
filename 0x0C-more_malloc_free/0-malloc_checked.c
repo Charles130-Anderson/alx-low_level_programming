@@ -18,5 +18,5 @@ if (ptr == NULL)
 printf("malloc failed. Terminating process with status 98.\n");
 exit(98);
 }
-return ptr;
+return (ptr);
 }
