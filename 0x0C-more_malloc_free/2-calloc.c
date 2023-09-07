@@ -4,9 +4,9 @@
 
 /**
  * *_memset - fills memory with a constant byte
- * @s: memory area to be filled
- * @b: char to copy
- * @n: number of times to copy b
+ * @s: a pointer to the memory area to be filled
+ * @b: char to copy 'byte value'
+ * @n: the number of times to copy b
  * Return: pointer to the memory area s
  */
 
@@ -23,9 +23,9 @@ return (s);
 }
 /**
  * *_calloc - allocates memory for an array
- * @nmemb: number of elements in the array
- * @size: size of each element
- * Return: pointer to allocated memory
+ * @nmemb: number of elements  in the array
+ * @size: size of each element in the allocated array
+ * Return: a pointer to allocated memory
  */
 
 void *_calloc(unsigned int nmemb, unsigned int size)
@@ -38,15 +38,11 @@ return (NULL);
 ptr = malloc(nmemb * size);
 if (ptr == NULL)
 {
-printf("malloc failed. Returning NULL.\n");
+
 return (NULL);
 }
 
-for (unsigned int i = 0; i < nmemb * size; i++)
-{
-*((char *)ptr + i) = 0;
-}
+_memset(ptr, 0, nmemb * size);
 
 return (ptr);
 }
-
