@@ -30,7 +30,7 @@ n = len2;
 result = malloc((len1 + n + 1) * sizeof(char));
 if (result == NULL)
 {
-printf("malloc failed. Returning NULL.\n");
+
 return (NULL);
 }
 
