@@ -1,89 +1,55 @@
+#include "variadic_functions.h"
 #include <stdarg.h>
 #include <stdio.h>
-#include "variadic_functions.h"
-/**
- * print_char - Prints a character
- * @args: The va_list containing the argument
- */
-void print_char(va_list args)
-{
-printf("%c", va_arg(args, int));
-}
-/**
- * print_int - Prints an integer
- * @args: The va_list containing the argument
- */
-void print_int(va_list args)
-{
-printf("%d", va_arg(args, int));
-}
-/**
- * print_float - Prints a float
- * @args: The va_list containing the argument
- */
-void print_float(va_list args)
-{
-printf("%f", va_arg(args, double));
-}
-/**
- * print_string - Prints a string
- * @args: The va_list containing the argument
- */
-void print_string(va_list args)
-{
-char *str = va_arg(args, char *);
 
-if (str == NULL)
-{
-printf("(nil)");
-}
-else
-{
-printf("%s", str);
-}
-}
 /**
- * print_all - Prints values of different types based on a format string
- * @format: The format string specifying the types of the arguments
+ * print_all - Prints anything according to the specified format.
+ * @format: A format string containing type specifiers for arguments.
+ * c: char
+ * i: integer
+ * f: float
+ * s: string (char *)
+ * Any other character is ignored.
+ * @...: The variable number of arguments to be printed.
  */
-void print_all(const char * const format, ...)
+void print_all(const char *const format, ...)
 {
-va_list args;
-unsigned int i = 0;
-char current_format;
+int i = 0;                /* Index for iterating through format string */
+char *sep = "";           /* Separator for values in the output */
+va_list list;             /* Variable argument list */
 
-va_start(args, format);
+va_start(list, format);   /* Initialize the argument list */
 
 while (format && format[i])
 {
-current_format = format[i];
+if (i > 0)
+printf("%s", sep); /* Print separator if not the first value */
 
-if (i != 0 && (current_format == 'c' || current_format == 'i' ||
-current_format == 'f' || current_format == 's'))
-{
-printf(", ");
-}
-
-switch (current_format)
+switch (format[i])
 {
 case 'c':
-print_char(args);
+printf("%c", va_arg(list, int)); /* Print char */
 break;
 case 'i':
-print_int(args);
+printf("%d", va_arg(list, int)); /* Print integer */
 break;
 case 'f':
-print_float(args);
+printf("%f", va_arg(list, double)); /* Print float */
 break;
 case 's':
-print_string(args);
+{
+char *str = va_arg(list, char *); /* Get string */
+if (!str)
+str = "(nil)";
+printf("%s", str); /* Print string or (nil) if NULL */
+}
 break;
 }
 
+sep = ", "; /* Set separator for the next value */
 i++;
 }
 
-va_end(args);
-
-printf("\n");
+va_end(list); /* Clean up the argument list */
+printf("\n"); /* Print a newline character at the end */
 }
