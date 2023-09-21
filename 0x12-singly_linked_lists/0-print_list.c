@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "lists.h"
 
- /** print_list - prints all the elements of a list_t list
+ /**
+ * print_list - prints all the elements of a list_t list
  * @h: pointer to the head of the list
  *
  * Return: the number of nodes
@@ -18,7 +19,7 @@ printf("[0] (nil)\n");
 }
 else
 {
-printf("[%u]%s\n",h->len, h->str);
+printf("[%u]%s\n", h->len, h->str);
 }
 
 h = h->next;
