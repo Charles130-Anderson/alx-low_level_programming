@@ -1,0 +1,12 @@
+def is_palindrome(n):
+    return str(n) == str(n)[::-1]
+
+largest = 0
+for i in range(999, 99, -1):
+    for j in range(999, 99, -1):
+        product = i * j
+        if product > largest and is_palindrome(product):
+            largest = product
+
+with open("102-result", "w") as file:
+    file.write(str(largest))
