@@ -10,17 +10,20 @@ RM = /bin/rm -f
 all: m.h $(NAME)
 
 $(NAME): $(OBJ)
-        $(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.c
-        $(CC) $(CFLAGS) -c $< -o $@
+%.o: %.c m.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-        $(RM) *~ $(NAME)
+	$(RM) *~ $(NAME)
 
 oclean:
-        $(RM) $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean oclean
 
 re: fclean all
+
+m.h:
+	@test -f $@ || (echo "Error: $@ not found"; false)
