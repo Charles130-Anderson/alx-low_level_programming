@@ -1,26 +1,26 @@
 CC = gcc
-SRC = main.c school.c
+SRC = $(wildcard *.c)
 OBJ = $(SRC:.c=.o)
 NAME = school
 CFLAGS = -Wall -Werror -Wextra -pedantic
 RM = /bin/rm -f
 
-.PHONY: all clean fclean re
+.PHONY: all clean oclean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ) m.h
-	$(CC) $(OBJ) -o $(NAME)
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o: %.c
+%.o: %.c m.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) *~ $(NAME) $(OBJ)
+	$(RM) *~ $(NAME)
 
-fclean: clean
+oclean: clean
+	$(RM) $(OBJ)
+
+fclean: oclean
 
 re: fclean all
-
-m.h:
-	@test -f $@ || (echo "Error: $@ not found"; false)
